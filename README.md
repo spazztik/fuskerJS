@@ -1,2 +1,2 @@
 # fuskerJS
-[calaveraDeluxe.github.io/fuskerJS](calaveraDeluxe.github.io/fuskerJS)
+[http://calaveradeluxe.github.io/fuskerJS/](http://calaveradeluxe.github.io/fuskerJS/)
