@@ -3,27 +3,30 @@ html
 	head
 		==inline_css('src/css/bootstrap-3.3.1.min.css')
 		==inline_css('src/css/style.css')
-		==inline_js('src/js/jquery-2.1.3.min.js')
+		==inline_js ('src/js/jquery-2.1.3.min.js')
+		==inline_js ('src/js/fusker.js')
 		
 		title fuskerJS
 	
 	body
 		.container-fluid
-			.row
+			.row.spacer
 				.col-sm-12
-					h1 fuskerJS
-			
-			.row
+					h1
+						' fuskerJS
+						small#count -
+
+			.row.spacer
 				.col-sm-1
-					input.form-control type="number"
+					input#width.form-control type="number" value="200"
 				.col-sm-6
-					input.form-control type="text"
-				.col-sm-1
-					input.btn.btn-primary type="button" value="Fusk"
-				.col-sm-4
-					textarea.form-control
+					.input-group
+						input#url.form-control type="text"
+						.input-group-btn
+							input#fusk.btn.btn-primary type="button" value="Fusk"
+				.col-sm-5
+					textarea#linkList.form-control
 
 			.row
 				.col-sm-12
-					
-					
+					#image-container
