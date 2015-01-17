@@ -5,10 +5,7 @@ require "./lib/slim_helper.rb"
 
 desc "best build system ever"
 task :build do |t|
-  
+  o = Tilt.new('src/index.html.slim').render(SlimHelper.new)
+  File.open('index.html', 'w+').write(o)
 end
 
-file 'index.html' => 'src/index.html.slim' do |t|
-  o = Tilt.new(t.prerequisites.first).render(SlimHelper.new)
-  File.open(t.name, 'w+').write(o)
-end
