@@ -112,7 +112,7 @@ function fusk() {
 		var s = new Rx.ReplaySubject();
 	
 		var os = generateStrings($("#url").val()).map(function(url, i) {
-			var smallImgUrl = resizeUrl + encodeURIComponent(url) + "&rand=" + Math.random();
+			var smallImgUrl = resizeUrl + encodeURIComponent(url);
 			var a = $("<a>").attr("href", url).attr("target", "blank");
 			var img = $("<img>").attr("src", smallImgUrl).css({width: width + "px"});
 			img.error(function() {
