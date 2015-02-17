@@ -81,17 +81,10 @@ function generateStrings(string) {
   return results;
 }
 
-function imageEventsToObservable(img) {
-	return Rx.Observable
-					.merge(img.loadAsObservable(), Rx.Observable.fromEvent(img, 'error'))
-					.take(1);
-}
-
 function log(message) {
   return function() {
     console.log(message, arguments);
-  }
-  
+  } 
 }
 
 function fusk() {
@@ -107,18 +100,20 @@ function fusk() {
 		var container = $("#image-container");
 		var width = parseInt($("#width").val(), 10);
 		var resizeUrl = "http://scripts.roflzomfg.de/resize.php?width=" + width + "&url=";
+		var googleUrl = "https://www.google.com/searchbyimage?hl=en&safe=off&site=search&image_url=";
 		container.empty();
-	
-		var s = new Rx.ReplaySubject();
 	
 		var os = generateStrings($("#url").val()).map(function(url, i) {
 			var smallImgUrl = resizeUrl + encodeURIComponent(url);
-			var a = $("<a>").attr("href", url).attr("target", "blank");
+			var con = $("<div>").addClass("image-container");
+			var googleLink = $("<a>").attr("href", googleUrl + encodeURIComponent(url)).attr("target", "blank").addClass("image-google-link").text("^");
+			var a = $("<a>").attr("href", url).attr("target", "blank").addClass("image-link");
 			var img = $("<img>").attr("src", smallImgUrl).css({width: width + "px"});
 			img.error(function() {
-				$(this).remove();
+				con.addClass("image-error");
 			});
 			img.load(function() {
+				con.addClass("image-loaded");
 				foundCount++;
 				countDisplay.text(foundCount);
 				existingUrls.push(url);
@@ -126,9 +121,10 @@ function fusk() {
 				linkList.val(existingUrls.join("\n"));
 			});
 			
-			container.append(a.append(img));
+			con.append(googleLink);
+			con.append(a.append(img));
+			container.append(con);
 			
-			imageEventsToObservable(img).subscribe(s);
 		});
 		s.subscribe(log(1), log(2), log(3));
 	}

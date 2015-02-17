@@ -21,3 +21,22 @@ img {
 .row:last-of-type:after {
 	border: none;
 }
+
+.image-container {
+	display: inline-block;
+	position: relative;
+}
+
+.image-link {
+	margin-left: 6px;
+}
+
+.image-error {
+	display: none;
+}
+
+.image-google-link {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
